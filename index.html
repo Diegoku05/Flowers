@@ -8,7 +8,7 @@
     <link rel="icon" href="img/flowers.png" type="image/x-icon">
     <title>FLORES</title>
 </head>
-<body>
+<body class="container"> <!-- Asegúrate de que el body tenga la clase "container" -->
     <!-- Reproductor de audio -->
     <audio id="audio" loop muted>
         <source src="img/Floricienta.mp3" type="audio/mpeg">
@@ -39,14 +39,7 @@
         </button>
     </div>
 
-    <!-- Script para manejar la reproducción del audio -->
-    <script>
-        // Reproducir el audio con sonido después de la interacción del usuario
-        document.addEventListener("click", () => {
-            const audio = document.getElementById("audio");
-            audio.muted = false; // Habilitar el sonido
-            audio.play(); // Reproducir el audio
-        });
-    </script>
+    <!-- Vincular el archivo JavaScript -->
+    <script src="main.js"></script>
 </body>
 </html>
