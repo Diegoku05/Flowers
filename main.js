@@ -19,7 +19,14 @@ window.onload = () => {
         fetch("FLORES.html")
             .then(response => response.text())
             .then(data => {
+                // Insertar el contenido en el contenedor
                 document.getElementById("contenidoDinamico").innerHTML = data;
+
+                // Forzar la interpretación de los scripts en el contenido dinámico
+                const scripts = document.getElementById("contenidoDinamico").getElementsByTagName("script");
+                for (let i = 0; i < scripts.length; i++) {
+                    eval(scripts[i].innerText);
+                }
             })
             .catch(error => console.error("Error al cargar el contenido:", error));
     });
