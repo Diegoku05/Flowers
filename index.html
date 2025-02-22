@@ -8,7 +8,7 @@
     <link rel="icon" href="img/flowers.png" type="image/x-icon">
     <title>FLORES</title>
 </head>
-<body class="container"> <!-- Asegúrate de que el body tenga la clase "container" -->
+<body class="container">
     <!-- Reproductor de audio -->
     <audio id="audio" loop muted>
         <source src="img/Floricienta.mp3" type="audio/mpeg">
@@ -34,10 +34,11 @@
         <span>Esto es para ti</span>
     </div>
     <div class="button">
-        <button>
-            <a href="FLORES.html">Haga Clic</a>
-        </button>
+        <button id="cargarContenido">Haga Clic</button>
     </div>
+
+    <!-- Contenedor para el contenido dinámico -->
+    <div id="contenidoDinamico"></div>
 
     <!-- Vincular el archivo JavaScript -->
     <script src="main.js"></script>
