@@ -8,14 +8,14 @@
     <link rel="icon" href="img/flowers.png" type="image/x-icon">
     <title>FLORES</title>
 </head>
-<body class="container"> <!-- Asegúrate de que el body tenga la clase "container" -->
+<body class="container">
     <!-- Reproductor de audio -->
     <audio id="audio" loop muted>
         <source src="img/Floricienta.mp3" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
 
-    <!-- Contenido de la página -->
+    <!-- Contenido de la página principal -->
     <div class="greetings">
         <span>R</span>
         <span>A</span>
@@ -35,11 +35,48 @@
     </div>
     <div class="button">
         <button>
-            <a href="FLORES.html">Haga Clic</a>
+            <a href="FLORES.html" id="audio-link">Haga Clic</a>
         </button>
     </div>
 
-    <!-- Vincular el archivo JavaScript -->
-    <script src="main.js"></script>
+    <!-- Script para manejar la reproducción del audio -->
+    <script>
+        const audio = document.getElementById("audio");
+
+        // Reproducir el audio con sonido después de la interacción del usuario
+        document.addEventListener("click", () => {
+            if (audio.paused) { // Verificar si el audio está pausado
+                audio.muted = false; // Habilitar el sonido
+                audio.play() // Reproducir el audio
+                    .then(() => console.log("Audio reproducido"))
+                    .catch((error) => console.error("Error al reproducir el audio:", error));
+            }
+        });
+
+        // Opcional: Mostrar un mensaje para que el usuario haga clic
+        const clickMessage = document.createElement("div");
+        clickMessage.textContent = "Haz clic en cualquier parte para activar el sonido";
+        clickMessage.style.position = "fixed";
+        clickMessage.style.bottom = "20px";
+        clickMessage.style.left = "50%";
+        clickMessage.style.transform = "translateX(-50%)";
+        clickMessage.style.color = "yellow";
+        clickMessage.style.fontSize = "1.2rem";
+        document.body.appendChild(clickMessage);
+
+        // Eliminar el mensaje después de hacer clic
+        document.addEventListener("click", () => {
+            clickMessage.remove();
+        }, { once: true });
+
+        // Guardar el estado del audio en localStorage antes de redirigir
+        const audioLink = document.getElementById("audio-link");
+        audioLink.addEventListener("click", (event) => {
+            event.preventDefault(); // Prevenir la navegación inmediata
+            localStorage.setItem("audioPlaying", "true");
+            localStorage.setItem("audioTime", audio.currentTime);
+            window.location.href = audioLink.href; // Redirigir a FLORES.html
+        });
+    </script>
 </body>
 </html>
