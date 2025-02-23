@@ -10,6 +10,64 @@
 </head>
 
 <body class="container">
+    <!-- Reproductor de audio -->
+    <audio id="audio" loop muted>
+        <source src="img/Floricienta.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <div class="night"></div>
+    <div class="flowers">
+      <!-- Contenido de las flores -->
+    </div>
+    <script src="main.js"></script>
+    <script>
+        // Recuperar el estado del audio desde localStorage
+        const audio = document.getElementById("audio");
+        const audioPlaying = localStorage.getItem("audioPlaying");
+        const audioTime = localStorage.getItem("audioTime");
+
+        if (audioPlaying === "true") {
+            audio.currentTime = parseFloat(audioTime);
+            audio.muted = false;
+            audio.play();
+        }
+
+        // Guardar el estado del audio en localStorage antes de redirigir
+        const audioLink = document.createElement("a");
+        audioLink.href = "index.html";
+        audioLink.addEventListener("click", (event) => {
+            event.preventDefault(); // Prevenir la navegación inmediata
+            localStorage.setItem("audioPlaying", "true");
+            localStorage.setItem("audioTime", audio.currentTime);
+            window.location.href = audioLink.href; // Redirigir a index.html
+        });
+
+        // Opcional: Agregar un botón para regresar a index.html
+        const backButton = document.createElement("button");
+        backButton.textContent = "Regresar";
+        backButton.addEventListener("click", () => {
+            localStorage.setItem("audioPlaying", "true");
+            localStorage.setItem("audioTime", audio.currentTime);
+            window.location.href = "index.html";
+        });
+        document.body.appendChild(backButton);
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" href="img/flowers.png" type="image/x-icon">
+    <title>FLORES</title>
+</head>
+
+<body class="container">
     <div class="night"></div>
     <div class="flowers">
       <div class="flower flower--1">
